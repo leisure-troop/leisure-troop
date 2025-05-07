@@ -5,7 +5,7 @@ function NavBar() {
     return (
         <div className="NavBar">
             <div className="logo-image"><img className="logo" src="./src/assets/free.svg" /></div>
-            <h3>About us</h3>
+            <div className="navbar-text">  <h3>About us</h3> </div>
             <Link to="/create-trip" > <h3>Create Your Trip </h3> </Link>
 
 
