@@ -1,6 +1,6 @@
-import NavBar from '../components/navbar';
 import TripList from '../components/TripList';
-import CreateTrip from './CreateTrip';
+import NavBar from '../components/Navbar';
+
 function HomePage() {
 
 
