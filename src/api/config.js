@@ -1,1 +1,1 @@
-export const baseURL = "https://leisure-troop-default-rtdb.europe-west1.firebasedatabase.app/";
+export const baseURL = import.meta.env.VITE_API_URL;
