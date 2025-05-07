@@ -2,7 +2,6 @@ import TripCard from "./TripCard";
 import axios from 'react';
 import { useState, useContext } from 'react';
 import { TripsContext } from '../context/TripsContext';
-import { baseURL } from '../api/config';
 
 function TripList() {
 
