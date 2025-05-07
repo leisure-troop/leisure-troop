@@ -1,5 +1,6 @@
 import NavBar from '../components/navbar';
 import TripList from '../components/TripList';
+import CreateTrip from './CreateTrip';
 function HomePage() {
 
 
@@ -11,6 +12,7 @@ function HomePage() {
                 <p>Discover and share amazing travel circuits around the world.</p>
 
                 <TripList />
+
             </section>
         </div>
     );

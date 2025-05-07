@@ -1,11 +1,14 @@
 import { useParams } from 'react-router-dom'
 import { useContext } from 'react';
 import { TripsContext } from '../context/TripsContext';
-import axios from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 function TripDetail() {
 
     const { id } = useParams();
-    const { trips } = useContext(TripsContext);
+    const { trips, setTrips } = useContext(TripsContext);
+    const navigate = useNavigate();
 
     const trip = trips.find((tripObj) => tripObj.id === id);
 
@@ -26,19 +29,22 @@ function TripDetail() {
             });
     };
     return (
-        <div>
-            <button onClick={() => deleteTrip(id)}  >
-                Delete the Trip
-            </button>
-            <h1>Trip Detail  </h1>
-
+        <div className="trip-detail">
             <h2>{trip.title}</h2>
-            <img src={trip.image} alt={trip.title} />
-            <p>{trip.description}</p>
-            <p>Rating: {trip.rating} </p>
-            <p>The duration is: {trip.duration} days</p>
-            <p>{trip.price} €</p>
+            <img src={trip.image} alt={trip.title} className="image" />
 
+            <div className="text-container">
+                <p>{trip.description}</p>
+                <p>Duration: {trip.duration_days} days</p>
+                <p>Rating: {trip.rating}</p>
+                <p>Price: {trip.price} €</p>
+            </div>
+
+            <div className="button-container">
+                <button onClick={() => deleteTrip(id)} className="button-delete">
+                    Delete Trip
+                </button>
+            </div>
         </div>
     );
 }

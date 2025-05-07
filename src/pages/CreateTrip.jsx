@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { baseURL } from '../api/config';
 import { TripsContext } from '../context/TripsContext';
 //here we will display a form with fields like title, image, duration
 function CreateTrip() {
@@ -14,7 +15,8 @@ function CreateTrip() {
     const [activityLevel, setActivityLevel] = useState('');
     const [description, setDescription] = useState('');
 
-
+    const navigate = useNavigate();
+    const { trips, setTrips } = useContext(TripsContext);
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -39,7 +41,7 @@ function CreateTrip() {
         //So we must tell the backend:
 
         // Hey! Save this trip to the database! with:
-        axios.post(`${baseURL} / trips.json`, newTrip) //instead of: setTrips([...trips, newTrip]);
+        axios.post(`${baseURL}/trips.json`, newTrip)//instead of: setTrips([...trips, newTrip]);
 
             //sends request then we update  local with:
             .then((response) => {
@@ -54,11 +56,11 @@ function CreateTrip() {
 
     }
     return (
-        <div>
+        <div className='card-body-form'>
 
             <h1>Create Your Own Trip  </h1>
-            <form onSubmit={handleSubmit}>
-                <label>Title:</label>
+            <form onSubmit={handleSubmit} className='product-form'>
+                <label >Title:</label>
                 <input
                     type="text"
                     value={title}
@@ -84,8 +86,8 @@ function CreateTrip() {
                 <label>Duration (days):</label>
                 <input
                     type="number"
-                    value={durationDays}
-                    onChange={(e) => setDurationDays(e.target.value)}
+                    value={duration}
+                    onChange={(e) => setDuration(e.target.value)}
                 />
 
                 <label>Nights:</label>
@@ -106,7 +108,7 @@ function CreateTrip() {
                 <input
                     type="number"
                     value={price}
-                    onChange={(e) => setPriceEur(e.target.value)}
+                    onChange={(e) => setPrice(e.target.value)}
                 />
 
                 <label>Activity Level:</label>
