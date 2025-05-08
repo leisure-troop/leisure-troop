@@ -1,12 +1,33 @@
 import { Link } from 'react-router-dom';
+import ShareButton from "../components/ShareButton";
+import { useContext } from 'react';
+import { TripsContext } from '../context/TripsContext';
+import axios from 'axios';
+import { baseURL } from '../api/config';
 
-//TripCard should be dumb (no axios, no useEffect)
-//but with context, trip card just use prop from parent triplist 
-//its triplist that getscontext
 function TripCard({ trip }) {
+    const { trips, setTrips } = useContext(TripsContext);
+
+    const toggleFavorite = () => {
+        const updatedTrip = { ...trip, isFavorite: !trip.isFavorite };
+
+        // Update on Firebase
+        axios.patch(`${baseURL}/trips/${trip.id}.json`, { isFavorite: updatedTrip.isFavorite })
+            .then(() => {
+                // Update local state
+                const updatedTrips = trips.map(t => t.id === trip.id ? updatedTrip : t);
+                setTrips(updatedTrips);
+            })
+            .catch((error) => console.log(error));
+    };
+
+    const shareUrl = `https://yourapp.com/trips/${trip.id}`;
+
     return (
         <div className="card-body">
-            <Link to={`/trips/${trip.id}`}  >
+            <ShareButton url={shareUrl} />
+
+            <Link to={`/trips/${trip.id}`}>
                 <div className="text-image-container">
                     <div className="image-container">
                         <img src={trip.image} alt={trip.title} className="image" />
@@ -22,10 +43,12 @@ function TripCard({ trip }) {
 
                 <div className="button-container">
                     <p className="price-button">{trip.price} €</p>
-
-
                 </div>
             </Link>
+
+            <button onClick={toggleFavorite} className="favorite-button">
+                {trip.isFavorite ? '⭐ Favorite List ' : '☆ Add to Favorites'}
+            </button>
         </div>
     );
 }

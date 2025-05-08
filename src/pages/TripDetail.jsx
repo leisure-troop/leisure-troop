@@ -3,7 +3,8 @@ import { useContext } from 'react';
 import { TripsContext } from '../context/TripsContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import NavBar from '../components/navbar';
+import { Link } from 'react-router-dom';
 function TripDetail() {
 
     const { id } = useParams();
@@ -30,20 +31,32 @@ function TripDetail() {
     };
     return (
         <div className="trip-detail">
-            <h2>{trip.title}</h2>
-            <img src={trip.image} alt={trip.title} className="image" />
+            <button className="button-back" onClick={() => navigate(-1)}>
+                ⬅ Back
+            </button>
+            <div className="trip-banner">
 
-            <div className="text-container">
-                <p>{trip.description}</p>
-                <p>Duration: {trip.duration_days} days</p>
-                <p>Rating: {trip.rating}</p>
-                <p>Price: {trip.price} €</p>
+                <img src={trip.image} alt={trip.title} className="trip-image" />
             </div>
 
-            <div className="button-container">
-                <button onClick={() => deleteTrip(id)} className="button-delete">
-                    Delete Trip
-                </button>
+            <div className="trip-info-card">
+                <h2 className="trip-title">{trip.title}</h2>
+
+                <div className="trip-info">
+                    <p><strong>Country:</strong> {trip.country}</p>
+                    <p><strong>Description:</strong> {trip.description}</p>
+                    <p><strong>Duration:</strong> {trip.duration} days / {trip.nights} nights</p>
+                    <p><strong>Group Size:</strong> Up to {trip.groupSize} people</p>
+                    <p><strong>Activity Level:</strong> {trip.activityLevel}</p>
+                    <p><strong>Price:</strong> {trip.price} €</p>
+                </div>
+
+                <div className="button-container">
+                    <button onClick={() => deleteTrip(id)} className="button-delete">Delete Trip</button>
+                    <Link to={`/trips/${trip.id}/edit`}>
+                        <button className="button-edit">Edit Trip</button>
+                    </Link>
+                </div>
             </div>
         </div>
     );

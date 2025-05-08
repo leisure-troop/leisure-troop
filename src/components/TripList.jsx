@@ -5,22 +5,23 @@ import { TripsContext } from '../context/TripsContext';
 
 function TripList() {
 
-    const { trips } = useContext(TripsContext);
+    const { filteredTrips } = useContext(TripsContext);
 
 
 
     return (
 
         <div className="trip-list-container">
-            <h3>List of trips</h3>
+            <h3>List of Trips</h3>
             <div className="trip-list">
-                {
-                    trips.length > 0 && trips.map((trip) => (
+                {filteredTrips.length > 0
+                    ? filteredTrips.map((trip) => (
                         <TripCard key={trip.id} trip={trip} />
-                    ))}
+                    ))
+                    : <p>No trips available. Start planning your adventure!</p>}
             </div>
         </div>
-    );
+    )
 }
 
 

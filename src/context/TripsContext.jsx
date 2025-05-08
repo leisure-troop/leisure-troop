@@ -25,10 +25,25 @@ export function TripsProvider({ children }) {
         }
         , [])
 
+    const [filteredTrips, setFilteredTrips] = useState([]);
+
+    useEffect(() => {
+        setFilteredTrips(trips); // initialize with all trips
+    }, [trips]);
+
+
+    const filterTrips = (query) => {
+        const cleanQuery = query.trim().toLowerCase();
+        const result = trips.filter((trip) =>
+            JSON.stringify(trip).toLowerCase().includes(cleanQuery)
+        );
+        setFilteredTrips(result);
+    };
+
 
     return (
-        <TripsContext.Provider value={{ trips, setTrips }} >
+        <TripsContext.Provider value={{ trips, setTrips, filteredTrips, filterTrips }}>
             {children}
         </TripsContext.Provider>
-    )
+    );
 }
