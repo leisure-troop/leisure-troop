@@ -21,7 +21,7 @@ function TripCard({ trip }) {
             .catch((error) => console.log(error));
     };
 
-    const shareUrl = `https://yourapp.com/trips/${trip.id}`;
+    const shareUrl = `leisure-troop.netlify.app/${trip.id}`;
 
     return (
         <div className="card-body">
