@@ -4,7 +4,7 @@ import About from './pages/About';
 import CreateTrip from './pages/CreateTrip';
 import TripDetail from './pages/TripDetail';
 import Footer from './components/Footer';
-import NavBar from './components/navbar';
+import NavBar from './components/Navbar';
 import EditTrip from './pages/EditTrip';
 import CreatedTripsPage from './pages/CreatedTripsPage'
 import FavoritesPage from './pages/FavoritesPage'
