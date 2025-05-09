@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { baseURL } from '../api/config';
 import { TripsContext } from '../context/TripsContext';
-import NavBar from '../components/navbar';
+import NavBar from '../components/Navbar';
 
 //here we will display a form with fields like title, image, duration
 function CreateTrip() {

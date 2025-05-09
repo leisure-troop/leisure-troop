@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { TripsContext } from '../context/TripsContext';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../components/navbar';
+import NavBar from '../components/Navbar';
 import { Link } from 'react-router-dom';
 function TripDetail() {
 
