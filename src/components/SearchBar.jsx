@@ -17,7 +17,7 @@ function SearchBar({ onSearch }) {
         <div className="search-bar">
             <input
                 type="text"
-                placeholder="Search by country..." // writing inside the box
+                placeholder="Search by Keyword..." // writing inside the box
                 value={query}                     // link the input to the state
                 onChange={handleChange}          // every keypress triggers handleChange
             />
